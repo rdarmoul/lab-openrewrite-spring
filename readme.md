@@ -26,19 +26,28 @@ Actions are implemented as visitors, which traverse the LST and make modificatio
 - Visitors are existing as Type-Specific Visitors (a nethod or class visitor) or as a Generic Visitors.
 
 # Using OpenRewrite
+Using OpenRewrite in a Maven project involves adding the OpenRewrite Maven plugin to your `pom.xml` file and configuring 
+it to use the desired recipes.
+Note: Using recipes also requires to include its dependencies in the rewrite plugin configuration in the `pom.xml` file.
+
+## rewrite.yml
+The `rewrite.yml` file is the main configuration file for OpenRewrite.
+It defines the recipes to be applied to the codebase. Here is an example of a `rewrite.yml` file.
+The default location of the file is in the root of the project.
 
 # Writing recipes
+## Provide recipes
+## Combine recipes
 ## Templates
 Templates are a powerful feature in OpenRewrite that allow you to define code patterns and transformations using a templating syntax. 
 They enable you to create reusable and parameterized code snippets that can be applied across
 see also 
+- https://errorprone.info/docs/refaster
+- https://docs.openrewrite.org/how-to-guides/writing-recipes/using-templates
 
 # Pitfalls
 - Do not mix text based and AST based refactorings in the same recipe. Text based refactorings are applied before AST based refactorings, which can lead to unexpected results.
 
-## rewrite.yml
-The `rewrite.yml` file is the main configuration file for OpenRewrite. 
-It defines the recipes to be applied to the codebase. Here is an example of a `rewrite.yml` file.
-The default location of the file is in the root of the project.
 
-```yaml
+
+
