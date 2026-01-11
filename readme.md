@@ -37,13 +37,19 @@ The default location of the file is in the root of the project.
 
 # Writing recipes
 ## Provide recipes
+TODO
 ## Combine recipes
+TODO
 ## Templates
 Templates are a powerful feature in OpenRewrite that allow you to define code patterns and transformations using a templating syntax. 
 They enable you to create reusable and parameterized code snippets that can be applied across
 see also 
 - https://errorprone.info/docs/refaster
 - https://docs.openrewrite.org/how-to-guides/writing-recipes/using-templates
+
+## Visitors
+see also https://docs.openrewrite.org/concepts-and-explanations/javatemplate
+
 
 # Pitfalls
 - Do not mix text based and AST based refactorings in the same recipe. Text based refactorings are applied before AST based refactorings, which can lead to unexpected results.
