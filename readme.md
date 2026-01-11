@@ -17,6 +17,7 @@ To see how this repository can be used, check out the [OpenRewrite quickstart gu
 
 ```mvn rewrite:run``` to apply open-rewrite recipes defined by the plugin in the configuration.
 ```mvn rewrite:dryRun``` to see what changes would be applied without actually applying them.
+```mvn rewrite:dryRun -Drewrite.activeRecipes=com.yourorg.ChangePackageExample```
 
 # Concepts
 Recipes: A recipe is a set of instructions that define how to transform code.
@@ -25,6 +26,15 @@ Actions are implemented as visitors, which traverse the LST and make modificatio
 - Visitors are existing as Type-Specific Visitors (a nethod or class visitor) or as a Generic Visitors.
 
 # Using OpenRewrite
+
+# Writing recipes
+## Templates
+Templates are a powerful feature in OpenRewrite that allow you to define code patterns and transformations using a templating syntax. 
+They enable you to create reusable and parameterized code snippets that can be applied across
+see also 
+
+# Pitfalls
+- Do not mix text based and AST based refactorings in the same recipe. Text based refactorings are applied before AST based refactorings, which can lead to unexpected results.
 
 ## rewrite.yml
 The `rewrite.yml` file is the main configuration file for OpenRewrite. 
