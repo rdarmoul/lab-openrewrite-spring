@@ -48,12 +48,16 @@ see also
 - https://docs.openrewrite.org/how-to-guides/writing-recipes/using-templates
 
 ## Visitors
-see also https://docs.openrewrite.org/concepts-and-explanations/javatemplate
+see also
+- creating java code -> https://docs.openrewrite.org/concepts-and-explanations/javatemplate
+- showing LST of a class -> https://docs.openrewrite.org/concepts-and-explanations/tree-visiting-printer
 
 
 # Pitfalls
 - Do not mix text based and AST based refactorings in the same recipe. Text based refactorings are applied before AST based refactorings, which can lead to unexpected results.
 
+# Links
+- OpenRewrite Github-Repository: https://github.com/openrewrite
 
 
 
