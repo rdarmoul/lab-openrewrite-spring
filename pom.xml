@@ -15,11 +15,6 @@
         <module>spring-petclinic-app</module>
     </modules>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.18.RELEASE</version>
-    </parent>
 
     <name>lab-openrwrite-spring</name>
     <description>a lab to learn about how to use openrewrite, having two module:
@@ -46,33 +41,19 @@
 
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
-    </dependencies>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.openrewrite.maven</groupId>
                 <artifactId>rewrite-maven-plugin</artifactId>
-                <version>5.2.6</version>
+                <version>6.27.0</version>
                 <configuration>
+                    <exportDatatables>true</exportDatatables>
                     <activeRecipes>
-                        <recipe>do-only-execute-on-app-module-to-protected-recipes-module</recipe>
+                        <recipe>org.openrewrite.maven.BestPractices</recipe>
                     </activeRecipes>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.springframework.samples</groupId>
-                        <artifactId>openrewrite-recipes</artifactId>
-                        <version>${pom.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>
