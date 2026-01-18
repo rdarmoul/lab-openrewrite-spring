@@ -39,6 +39,21 @@ See also
 - https://docs.openrewrite.org/concepts-and-explanations/lst-examples
 - https://docs.openrewrite.org/concepts-and-explanations/lossless-semantic-trees
 
+## Important types of LST
+- J.CompilationUnit: Represents a Java source file.
+- J.ClassDeclaration: Represents a Java class declaration
+- J.MethodDeclaration: Represents a Java method declaration.
+- J.VariableDeclarations: Represents variable declarations in Java.
+- J.Annotation: Represents Java annotations.
+- J.Import: Represents Java import statements.
+- J.Block: Represents a block of code in Java.
+- Identifier: Represents an identifier in Java (e.g., variable names, method names).
+- J.FieldAccess: Represents access to a field in Java.
+- J.TypeExpression: Represents a type expression in Java.
+- J.MethodInvocation: Represents a method invocation in Java.
+- J.Literal: Represents a literal value in Java (e.g., numbers, strings).
+and there are a lot more
+
 
 # Using OpenRewrite
 Using OpenRewrite in a Maven project involves adding the OpenRewrite Maven plugin to your `pom.xml` file and configuring 
@@ -66,30 +81,46 @@ see also
 - https://errorprone.info/docs/refaster
 - https://docs.openrewrite.org/how-to-guides/writing-recipes/using-templates
 
-## Imperative Recipes
+## Scanning Recipes
+OpenRewrite provides the capability to scan and apply recipes across multiple repositories or projects.
+see also https://docs.openrewrite.org/concepts-and-explanations/recipes#scanning-recipes
 
-### Provide recipes
-TODO
-### Combine recipes
-TODO
-  Call
+## Imperative Recipes
 
 ### Visitors
 see also
 - creating java code -> https://docs.openrewrite.org/concepts-and-explanations/javatemplate
 - showing LST of a class -> https://docs.openrewrite.org/concepts-and-explanations/tree-visiting-printer
+
+### JavaTemplate
+JavaTemplate is a powerful feature in OpenRewrite that allows you to define code snippets as templates and use them to generate or modify code dynamically.
+- see also https://docs.openrewrite.org/concepts-and-explanations/javatemplate
+
+### Combine visitors
+Combine multiple visitors by
+- use the doAfterVisit method inside of your visitor
+- use TreeVisitor.visit as any time the full tree must be provided
+### Provide recipes
+TODO
+### Combine recipes
+Combine multiple recipes into a single recipe using the `Recipe` class.
+https://docs.openrewrite.org/concepts-and-explanations/recipes#linking-recipes-together
+
+
+
 ## Best Practices
 - do not do too many things in one recipe, and espescially in a visitor. Split them into smaller recipes/visitors that do one thing well.
 - start write tests and then recipes -> https://docs.openrewrite.org/authoring-recipes/writing-a-java-refactoring-recipe#writing-tests
 - recipe must idempotent and immutable ->https://docs.openrewrite.org/authoring-recipes/recipe-conventions-and-best-practices#recipes-must-be-idempotent-and-immutable
 - use preconditions to speed up and to reduce amount of coding -> https://docs.openrewrite.org/authoring-recipes/recipe-conventions-and-best-practices#use-preconditions
+- 
 - compose visitors using TreeVisitor.visit as any time the  full tree must be provided ->https://docs.openrewrite.org/authoring-recipes/recipe-conventions-and-best-practices#compose-visitors-with-treevisitorvisit
 - learn from existing recipe from github, see links below
 - 
 
 ## Pitfalls
 - Do not mix text based and AST based refactorings in the same recipe. Text based refactorings are applied before AST based refactorings, which can lead to unexpected results.
-- JavaTemplate seems to stick somehow on the LST, which may, when you make an apply on the old elements, which does not contain modification of  the current visitor, do it in a later run like "mayAddImport"
+- JavaTemplate stick on the elements, that is provided by the cursor, which may, when you made already changes, but not taken over to the LST already, do it in a later run like "mayAddImport"
 
 # Links
 - Best Practises for Writing OpenRewrite Recipes: https://docs.openrewrite.org/authoring-recipes/recipe-conventions-and-best-practices

@@ -25,9 +25,43 @@ class SourceTreePrinterRecipeTest implements RewriteTest {
                 
                 class FooBar {
                   private static Logger logger;
-                
+                  
                   void doSomething() {
-                      logger.info("Doing something");
+                      logger.info("Doing somthing");
+                  }
+                }
+                
+                """));
+    }
+
+    @Test
+    void changedByMarkerRecipeFromRecipeList() {
+        rewriteRun(java("""
+                package com.yourorg;
+                
+                import org.slf4j.Logger;
+                
+                class FooBar {
+                  private static Logger logger;
+                  
+                  void doSomething() {
+                      //FIXME: there is a typo in the log message
+                      logger.info("Doing somthing");
+                  }
+                }
+                
+                """,
+                """
+                package com.yourorg;
+                
+                import org.slf4j.Logger;
+                
+                class FooBar {
+                  private static Logger logger;
+                  
+                  void doSomething() {
+                      /*~~>*///FIXME: there is a typo in the log message
+                      logger.info("Doing somthing");
                   }
                 }
                 
