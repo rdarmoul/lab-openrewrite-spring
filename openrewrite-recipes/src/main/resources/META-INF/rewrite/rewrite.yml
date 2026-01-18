@@ -1,0 +1,8 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: com.yourorg.ChangePackageExample
+displayName: Rename package name example
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.samples.petclinic.vet
+      newPackageName: org.springframework.samples.petclinic.vets

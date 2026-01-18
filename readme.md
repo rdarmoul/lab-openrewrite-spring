@@ -25,6 +25,19 @@ Recipes: A recipe is a set of instructions that define how to transform code.
 Actions are implemented as visitors, which traverse the LST and make modifications based on the defined rules.
 - Visitors are existing as Type-Specific Visitors (a nethod or class visitor) or as a Generic Visitors.
 
+## Recipes
+Recipes are composed of one or more visitors that define the transformations to be applied to the codebase
+There are three main types of recipes:
+- Declarative Recipes: These recipes provide a yaml based configuration and use existing recipes to perform transformations.
+- Refaster Templates: Refaster templates are a way to define code transformations using a template-based approach.
+- Imperative Recipes: Imperative recipes are written in Java and provide more flexibility and control over the transformations.
+
+# LST (Lossless Semantic Tree)
+OpenRewrite uses a Lossless Semantic Tree (LST) to represent the structure of the code.
+The LST is a tree-like structure that captures the syntax and semantics of the code, allowing for precise transformations.
+See also https://docs.openrewrite.org/concepts-and-explanations/lossless-semantic-trees
+Fore more details see https://docs.openrewrite.org/concepts-and-explanations/build-plugin-lst
+
 # Using OpenRewrite
 Using OpenRewrite in a Maven project involves adding the OpenRewrite Maven plugin to your `pom.xml` file and configuring 
 it to use the desired recipes.
@@ -36,28 +49,48 @@ It defines the recipes to be applied to the codebase. Here is an example of a `r
 The default location of the file is in the root of the project.
 
 # Writing recipes
-## Provide recipes
+## Providing Development Environment
+Recipes can be developed as provided via a jars. The jars are provides via maven dependencies in the rewrite plugin configuration in the `pom.xml` file.
+The following pages describes, how to setup a development to write the script and provide them via a jar.
+- https://docs.openrewrite.org/authoring-recipes/recipe-development-environment
+## Declarative Recipes
 TODO
-## Combine recipes
-TODO
-## Templates
-Templates are a powerful feature in OpenRewrite that allow you to define code patterns and transformations using a templating syntax. 
+see https://docs.openrewrite.org/reference/yaml-format-reference
+
+## Refaster Templates
+Templates are a powerful feature in OpenRewrite that allow you to define code patterns and transformations using a templating syntax.
 They enable you to create reusable and parameterized code snippets that can be applied across
-see also 
+see also
 - https://errorprone.info/docs/refaster
 - https://docs.openrewrite.org/how-to-guides/writing-recipes/using-templates
 
-## Visitors
+## Imperative Recipes
+
+### Provide recipes
+TODO
+### Combine recipes
+TODO
+  Call
+
+### Visitors
 see also
 - creating java code -> https://docs.openrewrite.org/concepts-and-explanations/javatemplate
 - showing LST of a class -> https://docs.openrewrite.org/concepts-and-explanations/tree-visiting-printer
+## Best Practices
+- start write tests and then recipes -> https://docs.openrewrite.org/authoring-recipes/writing-a-java-refactoring-recipe#writing-tests
+- recipe must idempotent and immutable ->https://docs.openrewrite.org/authoring-recipes/recipe-conventions-and-best-practices#recipes-must-be-idempotent-and-immutable
+- use preconditions to speed up and to reduce amount of coding -> https://docs.openrewrite.org/authoring-recipes/recipe-conventions-and-best-practices#use-preconditions
+- compose visitors using TreeVisitor.visit as any time the  full tree must be provided ->https://docs.openrewrite.org/authoring-recipes/recipe-conventions-and-best-practices#compose-visitors-with-treevisitorvisit
+- learn from existing recipe from github, see links below
 
 
 # Pitfalls
 - Do not mix text based and AST based refactorings in the same recipe. Text based refactorings are applied before AST based refactorings, which can lead to unexpected results.
 
 # Links
+- Best Practises for Writing OpenRewrite Recipes: https://docs.openrewrite.org/authoring-recipes/recipe-conventions-and-best-practices
 - OpenRewrite Github-Repository: https://github.com/openrewrite
+- OpenRewrite Workshop: https://docs.moderne.io/hands-on-learning/fundamentals/workshop-overview/
 
 
 
