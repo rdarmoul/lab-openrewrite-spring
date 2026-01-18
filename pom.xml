@@ -63,8 +63,7 @@
                 <version>5.2.6</version>
                 <configuration>
                     <activeRecipes>
-                        <recipe>org.openrewrite.java.format.AutoFormat</recipe>
-                        <recipe>com.yourorg.rewrite.labs.SourceTreePrinterRecipe</recipe>
+                        <recipe>do-only-execute-on-app-module-to-protected-recipes-module</recipe>
                     </activeRecipes>
                 </configuration>
                 <dependencies>

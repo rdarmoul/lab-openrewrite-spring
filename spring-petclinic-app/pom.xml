@@ -112,6 +112,24 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.openrewrite.maven</groupId>
+                <artifactId>rewrite-maven-plugin</artifactId>
+                <version>5.2.6</version>
+                <configuration>
+                    <activeRecipes>
+                        <recipe>com.yourorg.ChangePackageExample</recipe>
+                        <recipe>org.openrewrite.java.spring.boot3.SpringBoot3Upgrade</recipe>
+                    </activeRecipes>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.springframework.samples</groupId>
+                        <artifactId>openrewrite-recipes</artifactId>
+                        <version>${pom.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <executions>
