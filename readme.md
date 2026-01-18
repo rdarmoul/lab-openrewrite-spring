@@ -35,8 +35,10 @@ There are three main types of recipes:
 # LST (Lossless Semantic Tree)
 OpenRewrite uses a Lossless Semantic Tree (LST) to represent the structure of the code.
 The LST is a tree-like structure that captures the syntax and semantics of the code, allowing for precise transformations.
-See also https://docs.openrewrite.org/concepts-and-explanations/lossless-semantic-trees
-Fore more details see https://docs.openrewrite.org/concepts-and-explanations/build-plugin-lst
+See also
+- https://docs.openrewrite.org/concepts-and-explanations/lst-examples
+- https://docs.openrewrite.org/concepts-and-explanations/lossless-semantic-trees
+
 
 # Using OpenRewrite
 Using OpenRewrite in a Maven project involves adding the OpenRewrite Maven plugin to your `pom.xml` file and configuring 
@@ -77,15 +79,17 @@ see also
 - creating java code -> https://docs.openrewrite.org/concepts-and-explanations/javatemplate
 - showing LST of a class -> https://docs.openrewrite.org/concepts-and-explanations/tree-visiting-printer
 ## Best Practices
+- do not do too many things in one recipe, and espescially in a visitor. Split them into smaller recipes/visitors that do one thing well.
 - start write tests and then recipes -> https://docs.openrewrite.org/authoring-recipes/writing-a-java-refactoring-recipe#writing-tests
 - recipe must idempotent and immutable ->https://docs.openrewrite.org/authoring-recipes/recipe-conventions-and-best-practices#recipes-must-be-idempotent-and-immutable
 - use preconditions to speed up and to reduce amount of coding -> https://docs.openrewrite.org/authoring-recipes/recipe-conventions-and-best-practices#use-preconditions
 - compose visitors using TreeVisitor.visit as any time the  full tree must be provided ->https://docs.openrewrite.org/authoring-recipes/recipe-conventions-and-best-practices#compose-visitors-with-treevisitorvisit
 - learn from existing recipe from github, see links below
+- 
 
-
-# Pitfalls
+## Pitfalls
 - Do not mix text based and AST based refactorings in the same recipe. Text based refactorings are applied before AST based refactorings, which can lead to unexpected results.
+- JavaTemplate seems to stick somehow on the LST, which may, when you make an apply on the old elements, which does not contain modification of  the current visitor, do it in a later run like "mayAddImport"
 
 # Links
 - Best Practises for Writing OpenRewrite Recipes: https://docs.openrewrite.org/authoring-recipes/recipe-conventions-and-best-practices

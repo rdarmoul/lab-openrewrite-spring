@@ -64,7 +64,7 @@
                 <configuration>
                     <activeRecipes>
                         <recipe>org.openrewrite.java.format.AutoFormat</recipe>
-                        <recipe>com.yourorg.rewrite.labs.MyRecipes</recipe>
+                        <recipe>com.yourorg.rewrite.labs.SourceTreePrinterRecipe</recipe>
                     </activeRecipes>
                 </configuration>
                 <dependencies>
